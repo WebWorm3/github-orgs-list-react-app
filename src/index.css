@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.main{
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.list-group-item{
+  cursor: pointer;
+}
+
+.list-of-orgs{
+  overflow-y: scroll;
+  height: 500px;
+}
+
+.org-avatar{
+  width: 150px;
+  height: 150px;
+  background-style: cover;
+}
