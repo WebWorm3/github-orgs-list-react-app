@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-let classes = 'org-avatar ';
-
+import Img from 'react-image'
+  const spinner =(
+    <div class="sk-fading-circle">
+      <div class="sk-circle1 sk-circle"></div>
+      <div class="sk-circle2 sk-circle"></div>
+      <div class="sk-circle3 sk-circle"></div>
+      <div class="sk-circle4 sk-circle"></div>
+      <div class="sk-circle5 sk-circle"></div>
+      <div class="sk-circle6 sk-circle"></div>
+      <div class="sk-circle7 sk-circle"></div>
+      <div class="sk-circle8 sk-circle"></div>
+      <div class="sk-circle9 sk-circle"></div>
+      <div class="sk-circle10 sk-circle"></div>
+      <div class="sk-circle11 sk-circle"></div>
+      <div class="sk-circle12 sk-circle"></div>
+    </div>
+  );
   class Org extends Component {
-
     render(){
       var copy = Object.assign({}, this.props.selectedOrg);
       return(
         <div>
           <h1>{copy.login}</h1>
-          <img className={classes} src={copy.avatar_url}></img>
+          <Img className='org-avatar' src={copy.avatar_url} loader={spinner}/>
         </div>
       );
     }
