@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Img from 'react-image'
-  const spinner =(
+import Img from 'react-image';
+
+  const spinner = (
     <div class="sk-fading-circle">
       <div class="sk-circle1 sk-circle"></div>
       <div class="sk-circle2 sk-circle"></div>
@@ -16,13 +17,16 @@ import Img from 'react-image'
       <div class="sk-circle12 sk-circle"></div>
     </div>
   );
+
   class Org extends Component {
     render(){
       var copy = Object.assign({}, this.props.selectedOrg);
       return(
         <div>
-          <h1>{copy.login}</h1>
           <Img className='org-avatar' src={copy.avatar_url} loader={spinner}/>
+          <br />
+          <h1>{copy.login}</h1>
+          <h2>{copy.description}</h2>
         </div>
       );
     }
