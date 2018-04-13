@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import './App.css';
 import Org from './org';
 
 
@@ -10,7 +9,12 @@ class App extends Component {
   }
 
   componentDidMount(){
-    fetch('https://api.github.com/organizations?since=34234')
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+    var since = getRandomArbitrary(1, 1000000);
+
+    fetch('https://api.github.com/organizations?since=' + since)
     .then(res => res.json())
     .then(res => {
       this.setState({
