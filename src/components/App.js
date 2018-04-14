@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Org from './org';
+import Home from './home';
 
 
 class App extends Component {
@@ -46,6 +47,7 @@ class App extends Component {
               </ul>
             </div>
             <div className="col-lg-7 col-sm-7">
+              <Route path="/" component={Home} exact={true}/>
             {this.state.orgs && (
               <Route path="/org/:orgId" render={({ match }) => (
                 <Org selectedOrg={this.state.orgs.find(o => o.id == match.params.orgId )} />

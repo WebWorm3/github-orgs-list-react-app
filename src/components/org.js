@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Img from 'react-image';
+import Error from './error';
 
   const spinner = (
     <div className="sk-fading-circle">
@@ -23,7 +24,7 @@ import Img from 'react-image';
       var copy = Object.assign({}, this.props.selectedOrg);
       return(
         <div className="card" style={{width: '18rem'}}>
-          <Img className='card-img-top' src={copy.avatar_url} loader={spinner}/>
+          <Img className='card-img-top' src={copy.avatar_url} loader={spinner} unloader={Error}/>
           <div className="card-body">
             <p className="card-text">{copy.login}</p>
             <p className="card-text">{copy.description}</p>
