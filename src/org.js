@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import Img from 'react-image';
 
   const spinner = (
-    <div class="sk-fading-circle">
-      <div class="sk-circle1 sk-circle"></div>
-      <div class="sk-circle2 sk-circle"></div>
-      <div class="sk-circle3 sk-circle"></div>
-      <div class="sk-circle4 sk-circle"></div>
-      <div class="sk-circle5 sk-circle"></div>
-      <div class="sk-circle6 sk-circle"></div>
-      <div class="sk-circle7 sk-circle"></div>
-      <div class="sk-circle8 sk-circle"></div>
-      <div class="sk-circle9 sk-circle"></div>
-      <div class="sk-circle10 sk-circle"></div>
-      <div class="sk-circle11 sk-circle"></div>
-      <div class="sk-circle12 sk-circle"></div>
+    <div className="sk-fading-circle">
+      <div className="sk-circle1 sk-circle"></div>
+      <div className="sk-circle2 sk-circle"></div>
+      <div className="sk-circle3 sk-circle"></div>
+      <div className="sk-circle4 sk-circle"></div>
+      <div className="sk-circle5 sk-circle"></div>
+      <div className="sk-circle6 sk-circle"></div>
+      <div className="sk-circle7 sk-circle"></div>
+      <div className="sk-circle8 sk-circle"></div>
+      <div className="sk-circle9 sk-circle"></div>
+      <div className="sk-circle10 sk-circle"></div>
+      <div className="sk-circle11 sk-circle"></div>
+      <div className="sk-circle12 sk-circle"></div>
     </div>
   );
 
@@ -22,11 +22,12 @@ import Img from 'react-image';
     render(){
       var copy = Object.assign({}, this.props.selectedOrg);
       return(
-        <div>
-          <Img className='org-avatar' src={copy.avatar_url} loader={spinner}/>
-          <br />
-          <h1>{copy.login}</h1>
-          <h2>{copy.description}</h2>
+        <div className="card" style={{width: '18rem'}}>
+          <Img className='card-img-top' src={copy.avatar_url} loader={spinner}/>
+          <div className="card-body">
+            <p className="card-text">{copy.login}</p>
+            <p className="card-text">{copy.description}</p>
+          </div>
         </div>
       );
     }
