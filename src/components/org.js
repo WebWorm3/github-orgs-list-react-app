@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Img from 'react-image';
+import ErrorImage from '../images/error.png';
 
   const spinner = (
     <div className="sk-fading-circle">
@@ -18,8 +19,8 @@ import Img from 'react-image';
     </div>
   );
 
-  const Fail = () => (
-    <p>Fail</p>
+  const Fail = (
+    <img className="card-img-top" src={ErrorImage} />
   );
 
   class Org extends Component {
@@ -40,7 +41,7 @@ import Img from 'react-image';
       return(
         <div>
           <div className={this.state.anim} ref="box" style={{width: '18rem'}}>
-              <Img className='card-img-top' src={copy.avatar_url} loader={spinner} unLoader={Fail}/>
+              <Img className='card-img-top' src={copy.avatar_url} loader={spinner} unloader={Fail}/>
               <div className="card-body">
                 <p className="card-text">{copy.login}</p>
                 <p className="card-text">{copy.description ? copy.description : "No description"}</p>
