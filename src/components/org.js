@@ -25,13 +25,13 @@ import ErrorImage from '../images/error.png';
 
   class Org extends Component {
     state = {
-      anim: "card animated zoomIn"
+      anim: "card bg-light animated zoomIn"
     }
 
     componentWillReceiveProps(nextProps) {
       if (nextProps.count !== this.props.count) {
-        this.setState({ anim: "card" }, () => {
-          setTimeout(() => this.setState({ anim: "card animated zoomIn" }), 0)
+        this.setState({ anim: "card bg-ligh " }, () => {
+          setTimeout(() => this.setState({ anim: "card bg-light animated zoomIn" }), 0)
         })
       }
     }

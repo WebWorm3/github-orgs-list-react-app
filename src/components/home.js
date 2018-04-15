@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 class Home extends Component{
   state ={
-    anim: "alert animated fadeInUp"
+    anim: "alert animated fadeIn"
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.count !== this.props.count) {
       this.setState({ anim: "alert" }, () => {
-        setTimeout(() => this.setState({ anim: "alert animated fadeInUp" }), 0)
+        setTimeout(() => this.setState({ anim: "alert animated fadeIn" }), 0)
       })
     }
   }
