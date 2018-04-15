@@ -8,7 +8,7 @@ import SearchButton from './searchButton';
 let countGlobal = 0;
 var count = 0;
 var homeCount = 0;
-var since = 1;
+var since = 0;
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
