@@ -14,6 +14,10 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+function isInteger(x) {
+    return x % 1 === 0;
+}
+
 class App extends Component {
   state = {
     orgs: [],
@@ -38,16 +42,22 @@ class App extends Component {
   };
 
   searchClick(){
-
-      fetch('https://api.github.com/organizations?since=' + since)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          orgs: res
+    if (isInteger(since)){
+      if(since < 38400000){
+        fetch('https://api.github.com/organizations?since=' + since)
+        .then(res => res.json())
+        .then(res => {
+          this.setState({
+            orgs: res
+          });
         });
-      });
-      this.setState({error: ''});
-    console.log(since);
+        this.setState({error: ''});
+      }else{
+        this.setState({error: 'Too high!'});
+      }
+    }else{
+      this.setState({error: 'This is not an integer!'});
+    }
   }
 
   render() {
