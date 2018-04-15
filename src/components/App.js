@@ -26,7 +26,6 @@ class App extends Component {
       this.setState({
         orgs: res
       });
-      console.log(this.state.orgs);
     });
   }
 

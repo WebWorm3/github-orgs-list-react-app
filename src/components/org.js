@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { render, findDOMNode, ReactDOM } from "react-dom";
 import Img from 'react-image';
-import {Animated} from "react-animated-css";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
   const spinner = (
     <div className="sk-fading-circle">
@@ -36,7 +33,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
           setTimeout(() => this.setState({ anim: "card animated zoomIn" }), 0)
         })
       }
-  }
+    }
 
     render(){
       var copy = Object.assign({}, this.props.selectedOrg);
