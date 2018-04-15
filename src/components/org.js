@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { render, findDOMNode, ReactDOM } from "react-dom";
 import Img from 'react-image';
-import Error from './error';
+import {Animated} from "react-animated-css";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
   const spinner = (
     <div className="sk-fading-circle">
@@ -19,19 +21,38 @@ import Error from './error';
     </div>
   );
 
+  const Fail = () => (
+    <p>Fail</p>
+  );
+
   class Org extends Component {
+    state = {
+      anim: "card animated zoomIn"
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.count !== this.props.count) {
+        this.setState({ anim: "card" }, () => {
+          setTimeout(() => this.setState({ anim: "card animated zoomIn" }), 0)
+        })
+      }
+  }
+
     render(){
       var copy = Object.assign({}, this.props.selectedOrg);
       return(
-        <div className="card" style={{width: '18rem'}}>
-          <Img className='card-img-top' src={copy.avatar_url} loader={spinner} unloader={Error}/>
-          <div className="card-body">
-            <p className="card-text">{copy.login}</p>
-            <p className="card-text">{copy.description}</p>
+        <div>
+          <div className={this.state.anim} ref="box" style={{width: '18rem'}}>
+              <Img className='card-img-top' src={copy.avatar_url} loader={spinner} unLoader={Fail}/>
+              <div className="card-body">
+                <p className="card-text">{copy.login}</p>
+                <p className="card-text">{copy.description ? copy.description : "No description"}</p>
+              </div>
           </div>
         </div>
       );
     }
   }
+
 
 export default Org;

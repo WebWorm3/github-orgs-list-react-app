@@ -3,16 +3,21 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Org from './org';
 import Home from './home';
 
+let countGlobal = 0;
+var count = 0;
+var homeCount = 0;
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 class App extends Component {
   state = {
-    orgs: []
+    orgs: [],
+    count: -1
   }
 
   componentDidMount(){
-    function getRandomArbitrary(min, max) {
-      return Math.random() * (max - min) + min;
-    }
     var since = getRandomArbitrary(1, 1000000);
 
     fetch('https://api.github.com/organizations?since=' + since)
@@ -29,30 +34,40 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="main container row">
-            <div className="col-lg-5 col-sm-5">
-              <ul className="list-group list-of-orgs">
-                {
-                  this.state.orgs.map(function(org, index) {
-                    return(
-                      <Link to={`/org/${org.id}`} key={index}>
-                        <li className="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
-                          {org.login}
-                          <span className="badge badge-primary badge-pill">{org.id}</span>
-                        </li>
-                      </Link>
-                    );
-                  })
-                }
-              </ul>
-            </div>
-            <div className="col-lg-7 col-sm-7">
-              <Route path="/" component={Home} exact={true}/>
-            {this.state.orgs && (
-              <Route path="/org/:orgId" render={({ match }) => (
-                <Org selectedOrg={this.state.orgs.find(o => o.id == match.params.orgId )} />
-              )} />
-            )}
+          <div className="main container animated fadeInUp">
+          <Link to={'/'} onClick={() => { homeCount = getRandomArbitrary(1, 100)}} className="btn btn-light">Home</Link>
+            <br />
+            <br />
+            <div className="row">
+              <div className="col-lg-5 col-sm-5">
+                <ul className="list-group list-of-orgs list-group-flush">
+                  {
+                    this.state.orgs.map(function(org, index) {
+                      return(
+                        <a onClick={() => { count = getRandomArbitrary(1, 100)}}><Link to={`/org/${org.id}`} key={index} className="listLink">
+                          <li className="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                            {org.login}
+                            <span className="badge badge-primary badge-pill">{org.id}</span>
+                          </li>
+                          <br />
+                        </Link></a>
+                      );
+                    })
+                  }
+                </ul>
+              </div>
+              <div className="col-lg-7 col-sm-7">
+                <Route path="/" exact={true} render={() => (
+                  <Home count={homeCount}/>
+                )}/>
+              {this.state.orgs && (
+                <Route path="/org/:orgId" render={({ match }) => {
+                  return(
+                    <Org selectedOrg={this.state.orgs.find(o => o.id == match.params.orgId )} count={count}/>
+                  );
+                }} />
+              )}
+              </div>
             </div>
           </div>
         </div>

@@ -29,8 +29,12 @@ body {
   display: none;
 }
 
+.card{
+  transition: all 1s ease-in-out;
+}
+
 .sk-fading-circle {
-  margin-top: 100px;
+  margin-top: 120px;
   margin-bottom: 100px;
   margin-left: 120px;
   width: 40px;
@@ -165,4 +169,22 @@ body {
 @keyframes sk-circleFadeDelay {
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; }
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
