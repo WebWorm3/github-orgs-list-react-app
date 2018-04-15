@@ -23,13 +23,7 @@ class SearchForm extends Component{
 
   render() {
     return (
-        <input
-          className={this.state.anim}
-          type="text"
-          placeholder="type here"
-          onChange={this.update}
-          value={this.state.fieldVal}
-        />
+        <input className={this.state.anim} type="text" placeholder="type id here" onChange={this.update} value={this.state.fieldVal} />
     )
   }
 }
