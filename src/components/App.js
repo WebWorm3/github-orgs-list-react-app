@@ -34,6 +34,7 @@ class App extends Component {
       this.setState({
         orgs: res
       });
+      console.log(this.state.orgs);
     });
   }
 
@@ -74,7 +75,7 @@ class App extends Component {
                   {
                     this.state.orgs.map(function(org, index) {
                       return(
-                        <a onClick={() => { count = getRandomArbitrary(1, 100)}}><Link to={`/org/${org.id}`} key={index} className="listLink">
+                        <a onClick={() => { count = getRandomArbitrary(1, 100)}}><Link to={`/org/${org.login}`} key={index} className="listLink">
                           <li className="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                             {org.login}
                             <span className="badge badge-secondary badge-pill">{org.id}</span>
@@ -100,9 +101,9 @@ class App extends Component {
                   </div>
                 )}/>
               {this.state.orgs && (
-                <Route path="/org/:orgId" render={({ match }) => {
+                <Route path="/org/:orgLogin" render={({ match }) => {
                   return(
-                    <Org selectedOrg={this.state.orgs.find(o => o.id == match.params.orgId )} count={count}/>
+                    <Org selectedOrg={this.state.orgs.find(o => o.login == match.params.orgLogin )} count={count} login={match.params.orgLogin}/>
                   );
                 }} />
               )}

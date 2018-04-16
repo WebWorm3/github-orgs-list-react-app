@@ -25,6 +25,7 @@ import ErrorImage from '../images/error.png';
 
   class Org extends Component {
     state = {
+      org: [],
       anim: "card bg-light animated zoomIn"
     }
 
@@ -33,18 +34,24 @@ import ErrorImage from '../images/error.png';
         this.setState({ anim: "card bg-ligh " }, () => {
           setTimeout(() => this.setState({ anim: "card bg-light animated zoomIn" }), 0)
         })
+        fetch('https://api.github.com/orgs/' + nextProps.login)
+        .then(res => res.json())
+        .then(res => {
+          this.setState({org: res});
+          console.log(this.state.org);
+        });
       }
     }
 
     render(){
-      var copy = Object.assign({}, this.props.selectedOrg);
       return(
         <div>
           <div className={this.state.anim} ref="box" style={{width: '18rem'}}>
-              <Img className='card-img-top' src={copy.avatar_url} loader={spinner} unloader={Fail}/>
+              <Img className='card-img-top' src={this.state.org.avatar_url} loader={spinner} unloader={Fail}/>
               <div className="card-body">
-                <p className="card-text">{copy.login}</p>
-                <p className="card-text">{copy.description ? copy.description : "No description"}</p>
+                <p className="card-text">{this.state.org.name ? this.state.org.name : this.state.org.login}</p>
+                <p className="card-text">{this.state.org.location ? this.state.org.location : "No location..."}</p>
+                <p className="card-text">{this.state.org.description ? this.state.org.description : "No description..."}</p>
               </div>
           </div>
         </div>
