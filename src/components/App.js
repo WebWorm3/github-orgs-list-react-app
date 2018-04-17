@@ -103,7 +103,7 @@ class App extends Component {
               {this.state.orgs && (
                 <Route path="/org/:orgLogin" render={({ match }) => {
                   return(
-                    <Org selectedOrg={this.state.orgs.find(o => o.login == match.params.orgLogin )} count={count} login={match.params.orgLogin}/>
+                    <Org count={count} login={match.params.orgLogin}/>
                   );
                 }} />
               )}

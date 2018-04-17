@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Img from 'react-image';
 import ErrorImage from '../images/error.png';
+import access_token from '../github-api-token';
 
   const spinner = (
     <div className="sk-fading-circle">
@@ -34,7 +35,7 @@ import ErrorImage from '../images/error.png';
         this.setState({ anim: "card bg-ligh " }, () => {
           setTimeout(() => this.setState({ anim: "card bg-light animated zoomIn" }), 0)
         })
-        fetch('https://api.github.com/orgs/' + nextProps.login)
+        fetch('https://api.github.com/orgs/' + nextProps.login + '?access_token=' + access_token)
         .then(res => res.json())
         .then(res => {
           this.setState({org: res});
