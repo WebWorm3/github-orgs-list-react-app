@@ -31,6 +31,16 @@ import access_token from '../github-api-token';
       loader: false,
     }
 
+    componentDidMount(){
+      this.setState({loader: true});
+      fetch('https://api.github.com/orgs/' + this.props.login + '?access_token=' + access_token)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({ org: res, loader: false });
+        console.log(this.state.org);
+      });
+    }
+
     componentWillReceiveProps(nextProps) {
       if (nextProps.count !== this.props.count) {
         this.setState({ anim: "card bg-ligh " }, () => {
@@ -39,14 +49,12 @@ import access_token from '../github-api-token';
         fetch('https://api.github.com/orgs/' + nextProps.login + '?access_token=' + access_token)
         .then(res => res.json())
         .then(res => {
-          this.setState({org: res, loader: false});
+          this.setState({ org: res, loader: false });
           console.log(this.state.org);
         });
       }
     }
-
     render(){
-
       if (this.state.loader){
         return null;
       }
