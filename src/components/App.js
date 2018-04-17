@@ -21,6 +21,7 @@ function isInteger(x) {
 class App extends Component {
   state = {
     orgs: [],
+    current: '',
     count: -1,
     error: ''
   }
@@ -65,7 +66,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="main container animated fadeInUp">
+          <div className="main container animated fadeIn">
           <Link to={'/'} onClick={() => { homeCount = getRandomArbitrary(1, 100)}} className="btn btn-light">Home</Link>
           <br />
           <br />
@@ -75,13 +76,13 @@ class App extends Component {
                   {
                     this.state.orgs.map(function(org, index) {
                       return(
-                        <a onClick={() => { count = getRandomArbitrary(1, 100)}}><Link to={`/org/${org.login}`} key={index} className="listLink">
+                        <Link to={`/org/${org.login}`} key={index} className="listLink" onClick={() => {count = getRandomArbitrary(1, 100)}}>
                           <li className="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                             {org.login}
                             <span className="badge badge-secondary badge-pill">{org.id}</span>
                           </li>
                           <br />
-                        </Link></a>
+                        </Link>
                       );
                     })
                   }
