@@ -20,6 +20,8 @@ class Home extends Component{
           <p>Here you can check information of github organizations!</p>
           <hr />
           <p className="mb-0">All you need to do is just click on organization in the list.</p>
+          <hr />
+          <p className="mb-0">You can also find some orgs by id here.</p>
         </div>
       </div>
     );
