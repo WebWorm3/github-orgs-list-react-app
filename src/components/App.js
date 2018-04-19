@@ -39,8 +39,9 @@ class App extends Component {
     });
   }
 
-  onUpdate = (val) => {
+  onUpdateSearchArray = (val) => {
     since = val;
+    console.log(since);
   };
 
   searchClick(){
@@ -94,7 +95,7 @@ class App extends Component {
                     <Home count={homeCount}/>
                     <div className="alert">
                       <p className="red">{this.state.error}</p>
-                      <SearchForm onUpdate={this.onUpdate} count={homeCount}/>
+                      <SearchForm onUpdate={this.onUpdateSearchArray} count={homeCount}/>
                       <br />
                       <SearchButton clickFunc={this.searchClick.bind(this)} count={homeCount}/>
                       <br />
