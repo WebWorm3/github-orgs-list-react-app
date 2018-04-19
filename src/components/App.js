@@ -4,11 +4,10 @@ import Org from './org';
 import Home from './home';
 import SearchForm from './searchForm';
 import SearchButton from './searchButton';
+import access_token from '../github-api-token';
 
-let countGlobal = 0;
-var count = 0;
-var homeCount = 0;
-var since = 0;
+var homeCount;
+var count;
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -21,15 +20,12 @@ function isInteger(x) {
 class App extends Component {
   state = {
     orgs: [],
-    current: '',
-    count: -1,
-    error: ''
+    error: '',
+    since: 0,
   }
 
   componentDidMount(){
-    since = getRandomArbitrary(1, 1000000);
-
-    fetch('https://api.github.com/organizations?since=' + since)
+    fetch('https://api.github.com/organizations?since=' + getRandomArbitrary(1, 1000000) + '?access_token=' + access_token)
     .then(res => res.json())
     .then(res => {
       this.setState({
@@ -40,14 +36,13 @@ class App extends Component {
   }
 
   onUpdateSearchArray = (val) => {
-    since = val;
-    console.log(since);
+    this.setState({since: val});
   };
 
   searchClick(){
-    if (isInteger(since)){
-      if(since < 38400000){
-        fetch('https://api.github.com/organizations?since=' + since)
+    if (isInteger(this.state.since)){
+      if(this.state.since < 38400000){
+        fetch('https://api.github.com/organizations?since=' + this.state.since)
         .then(res => res.json())
         .then(res => {
           this.setState({
