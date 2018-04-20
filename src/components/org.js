@@ -64,9 +64,19 @@ import access_token from '../github-api-token';
             <div className={this.state.anim} ref="box" style={{width: '18rem'}}>
                 <Img className='card-img-top' src={this.state.org.avatar_url} loader={spinner} unloader={Fail}/>
                 <div className="card-body">
-                  <p className="card-text">{this.state.org.name ? this.state.org.name : this.state.org.login}</p>
-                  <p className="card-text">{this.state.org.location ? this.state.org.location : "No location..."}</p>
-                  <p className="card-text">{this.state.org.description ? this.state.org.description : "No description..."}</p>
+                  <p className="card-text"><b><a href={this.state.org.html_url} target="_blank">{this.state.org.name ? this.state.org.name : this.state.org.login}</a></b></p>
+                  {this.state.org.email ? (
+                    <p className="card-text">{this.state.org.email}</p>
+                  ) : null}
+                  {this.state.org.blog ? (
+                    <p className="card-text"><a href={this.state.org.blog} target="_blank">[Blog]</a></p>
+                  ) : null}
+                  {this.state.org.location ? (
+                    <p className="card-text">{this.state.org.location}</p>
+                  ) : null}
+                  {this.state.org.description ? (
+                    <p className="card-text">{this.state.org.description}</p>
+                  ) : null}
                 </div>
             </div>
           </div>
