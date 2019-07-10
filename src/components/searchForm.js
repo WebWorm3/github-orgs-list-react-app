@@ -1,31 +1,18 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react'
 
+export default (props) => {
+  const [input, setInput] = useState('')
+  const [anim, setAnim] = useState('form-control animated fadeIn')
 
-class SearchForm extends Component{
+  useEffect(() => {
+    setAnim('form-control')
+    setTimeout(() => setAnim('form-control animated fadeIn'), 0)
+  }, [props.count])
 
-  state = {
-    input: '',
-    anim: "form-control animated fadeIn"
+  const update = (e) => {
+    props.onUpdate(e.target.value)
+    setInput(e.target.value)
   }
 
-  update = (e) => {
-    this.props.onUpdate(e.target.value);
-    this.setState({input: e.target.value});
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.count !== this.props.count) {
-      this.setState({ anim: "form-control" }, () => {
-        setTimeout(() => this.setState({ anim: "form-control animated fadeIn" }), 0)
-      })
-    }
-  }
-
-  render() {
-    return (
-        <input className={this.state.anim} type="text" placeholder="You can also find an array of 30 orgs here by id." onChange={this.update} value={this.state.fieldVal} />
-    )
-  }
+  return <input className={anim} type="text" placeholder="You can also find an array of 30 orgs here by id." onChange={update} value={input} />
 }
-
-export default SearchForm;

@@ -1,24 +1,12 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react'
 
-class SearchButton extends Component{
+export default (props) => {
+  const [anim, setAnim] = useState('btn btn-light animated fadeIn')
 
-  state = {
-    anim: "btn btn-light animated fadeIn"
-  }
+  useEffect(() => {
+    setAnim('btn btn-light')
+    setTimeout(() => setAnim('btn btn-light animated fadeIn'), 0)
+  }, [props.count])
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.count !== this.props.count) {
-      this.setState({ anim: "btn btn-light" }, () => {
-        setTimeout(() => this.setState({ anim: "btn btn-light animated fadeIn" }), 0)
-      })
-    }
-  }
-
-  render(){
-    return(
-      <button className={this.state.anim} onClick={this.props.clickFunc}>Search</button>
-    );
-  }
+  return <button className={anim} onClick={props.clickFunc}>Search</button>
 }
-
-export default SearchButton;
